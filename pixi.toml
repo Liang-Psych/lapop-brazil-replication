@@ -1,0 +1,16 @@
+[workspace]
+name = "lapop"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "osx-64", "linux-64", "linux-aarch64"]
+
+[dependencies]
+r-base = ">=4.3"
+r-dplyr = "*"
+r-readr = "*"
+r-readxl = "*"
+r-stringi = "*"
+r-fixest = "*"
+
+[tasks]
+# 修正版分析：因变量方向已反转，见 re_ana_corrected.R 文件头说明
+corrected = "Rscript re_ana_corrected.R"
