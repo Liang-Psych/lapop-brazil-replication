@@ -186,7 +186,7 @@ In preparing this erratum, the author used an AI assistant (Claude, developed by
 
 # 勘误说明
 
-**论文**：许亮（2025）。《中国发展融资对巴西公众对华态度的影响》（*The Impact of Chinese Development Finance on Brazilian Public Attitudes Toward China*）。硕士学位论文，中国农业大学与圣保罗大学路易斯·德·凯罗斯农学院（ESALQ）双学位项目。
+**论文**：许亮（2025）-《中国发展融资对巴西公众对华态度的影响》（*The Impact of Chinese Development Finance on Brazilian Public Attitudes Toward China*）-硕士学位论文，中国农业大学与圣保罗大学路易斯·德·凯罗斯农学院（ESALQ）双学位项目。
 
 **版本**：v1.5 · 2026-10-16
 
