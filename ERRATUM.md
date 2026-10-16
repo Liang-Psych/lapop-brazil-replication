@@ -2,7 +2,7 @@
 
 **Thesis**: Xu, L. (2025). *The Impact of Chinese Development Finance on Brazilian Public Attitudes Toward China*. Master's thesis, joint degree programme of China Agricultural University and the Luiz de Queiroz College of Agriculture (ESALQ), University of São Paulo.
 
-**Version**: v1.4 · 2026-10-16
+**Version**: v1.5 · 2026-10-16
 
 **Replication materials**: https://github.com/Liang-Psych/lapop-brazil-replication
 
@@ -126,7 +126,7 @@ Notes:
 
 ### 4.2 Pre-specified extended analyses
 
-To avoid specification searching after the corrected results were known, the author committed the specifications, inference methods and reporting rules for the extended analyses to `ANALYSIS_PLAN.md` on 2026-10-12, before running them. The plan was not registered on an external platform, and some corrected results had already been seen when it was written; the plan lists those results. Results (main sample N = 4,318; Holm correction for multiple testing):
+To avoid choosing model specifications after seeing the results, the author committed the specifications, inference methods and reporting rules for the extended analyses to `ANALYSIS_PLAN.md` on 2026-10-12, before running them. Some corrected results had already been seen when the plan was written; the plan lists those results. Results (main sample N = 4,318; Holm correction for multiple testing):
 
 | Test | Estimate | 95% CI | Holm-adjusted p |
 |---|---|---|---|
@@ -188,7 +188,7 @@ In preparing this erratum, the author used an AI assistant (Claude, developed by
 
 **论文**：许亮（2025）。《中国发展融资对巴西公众对华态度的影响》（*The Impact of Chinese Development Finance on Brazilian Public Attitudes Toward China*）。硕士学位论文，中国农业大学与圣保罗大学路易斯·德·凯罗斯农学院（ESALQ）双学位项目。
 
-**版本**：v1.4 · 2026-10-16
+**版本**：v1.5 · 2026-10-16
 
 **复现材料**：https://github.com/Liang-Psych/lapop-brazil-replication
 
@@ -312,7 +312,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 
 ### 4.2 预先确定的扩展分析
 
-为避免在已知结果后进行规格搜索，作者于 2026-10-12 先将扩展分析的规格、推断方法和结论措辞规则写入 `ANALYSIS_PLAN.md` 并提交到版本库，之后才运行。该计划没有在外部平台登记；撰写时作者已看到部分修正结果，计划中逐项列明了这些结果。结果如下（主样本 N = 4,318，Holm 多重检验校正）：
+为避免看到结果后再挑选模型设定，作者于 2026-10-12 先将扩展分析的规格、推断方法和结论措辞规则写入 `ANALYSIS_PLAN.md` 并提交到版本库，之后才运行。撰写计划时作者已看到部分修正结果，计划中逐项列明了这些结果。结果如下（主样本 N = 4,318，Holm 多重检验校正）：
 
 | 检验 | 估计值 | 95% 置信区间 | Holm 校正 p |
 |---|---|---|---|
