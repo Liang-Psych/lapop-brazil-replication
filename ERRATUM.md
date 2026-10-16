@@ -2,7 +2,7 @@
 
 **论文**：Xu, L. (2025). *The Impact of Chinese Development Finance on Brazilian Public Attitudes Toward China*（《中国发展融资对巴西公众对华态度的影响》）. 硕士学位论文，中国农业大学 / 圣保罗大学路易斯·德·凯罗斯农学院（ESALQ-USP）双学位项目。
 
-**勘误版本**：v1.0 · 2026-10-12（草稿，待导师审阅）
+**勘误版本**：v1.1 · 2026-10-16（草稿，待导师审阅）
 
 **问题发现日期**：2026-07-26
 
@@ -23,6 +23,28 @@
 - **错误**：分析脚本 `lapop_12.R` 至 `lapop_23.R` 直接使用原始取值（`china_attitude = mil10a`），因此**数值越大表示越不信任**；但论文将其解读为数值越大态度越积极。对照变量 `mil10e`（美国政府的可信度）存在同样的问题。
 - **范围**：六轮全部受影响，方向一致。“不知道”和“拒答”已正确设为缺失值，没有混入 1 到 4 分。
 - **性质**：这是变量方向解读上的技术错误，不涉及数据篡改或选择性报告。原始数据、代码和结果记录均完整保留在本仓库中。
+
+#### 错误成因：官方在线工具与原始数据的计分方向相反
+
+LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表盘](https://public.tableau.com/app/profile/lapop.central/viz/LAPOPV3_4/Combination)）把 `mil10a` 重新计分为 0 到 100，**方向为“越高越可信”**：“非常可信”对应 100，“完全不可信”对应 0。页面上没有说明这一方向与原始数据文件相反。
+
+作者在研究设计阶段参照该工具理解变量，论文中对量表的描述（1 = 完全不可信 … 4 = 非常可信）与该工具的方向一致。但分析使用的是从 LAPOP 下载的原始 Stata 数据文件，其中 1 = 非常可信、4 = 完全不可信，代码中没有反转。论文的文字描述与实际代码因此方向相反。
+
+为确认二者是同一批数据，作者将原始 `mil10a` 按官方工具的口径换算（`(4 − mil10a) / 3 × 100`，使用调查权重）并与仪表盘巴西各轮均值对照：
+
+| 轮次 | 官方仪表盘 | 原始数据换算 |
+|---|---|---|
+| 2012 | 45.2 | 46.1 |
+| 2014 | 37.0 | 37.9 |
+| 2016/17 | 53.7 | 53.7 |
+| 2018/19 | 46.2 | 46.2 |
+| 2021 | 36.5 | 36.5 |
+| 2023 | 31.1 | 31.1 |
+| 样本量 | 4,328 | 4,328 |
+
+四轮完全一致，样本量相同。2012 年与 2014 年约差 1 分，可能是官方采用的权重变量与本文不同。
+
+**教训**：使用调查数据时，应以原始数据文件中的值标签（value labels）和官方编码手册为准，而不是在线可视化工具的显示方向，并在分析前逐轮核对量表方向。
 
 ### 3. 受影响与不受影响的内容
 
@@ -104,6 +126,7 @@
 | `re_ana_corrected_py.py` | 同一修正分析的 Python（pyfixest）版本 |
 | `ANALYSIS_PLAN.md` | 预先登记的扩展分析计划、偏离记录、结果摘要 |
 | `build_plan_data.py`、`run_plan_v1.py` | 扩展分析的数据构建与估计脚本 |
+| `check_dashboard.py` | 原始数据与官方仪表盘的方向核对 |
 | `results/` | 全部修正结果 |
 
 ### 8. 时间线
@@ -113,6 +136,7 @@
 | 2025-05-22 | 获得硕士学位（USP 学位证书所载日期） |
 | 2026-07-26 | 复核中发现因变量编码方向问题；仓库暂停公开访问 |
 | 2026-10-12 | 完成直接修正分析；提交预先登记的分析计划并运行；完成本勘误草稿 |
+| 2026-10-16 | 查明错误成因：官方在线工具与原始数据计分方向相反 |
 
 ---
 
@@ -129,6 +153,28 @@ The dependent variable in the original thesis, attitudes toward China, was inter
 - **Error**: the scripts `lapop_12.R` to `lapop_23.R` used the raw values (`china_attitude = mil10a`), so **higher values meant less trust**, while the thesis interpreted higher values as more favourable attitudes. The comparison variable `mil10e` (trustworthiness of the US government) had the same issue.
 - **Scope**: all six waves are affected, in the same direction. "Don't know" and "No response" were correctly treated as missing and did not enter the 1–4 scale.
 - **Nature**: a technical error in interpreting the variable's direction. It involves no data manipulation or selective reporting. The original data, code and outputs are preserved in full in this repository.
+
+#### How the error arose: the official online tool and the raw data use opposite directions
+
+LAPOP's official online visualisation tool (the [AmericasBarometer Tableau dashboard](https://public.tableau.com/app/profile/lapop.central/viz/LAPOPV3_4/Combination)) rescales `mil10a` to 0–100 **so that higher means more trustworthy**: "very trustworthy" maps to 100 and "not at all trustworthy" to 0. The page does not indicate that this direction is the reverse of the raw data file.
+
+The author relied on this tool to understand the variable during research design, and the thesis describes the scale in the tool's direction (1 = not at all trustworthy … 4 = very trustworthy). The analysis, however, used the raw Stata file downloaded from LAPOP, in which 1 = very trustworthy and 4 = not at all trustworthy, and the code did not reverse it. The thesis text and the code therefore ran in opposite directions.
+
+To confirm that both describe the same data, the author rescaled the raw `mil10a` the way the dashboard does (`(4 − mil10a) / 3 × 100`, survey-weighted) and compared Brazil's round means:
+
+| Round | Official dashboard | Raw data, rescaled |
+|---|---|---|
+| 2012 | 45.2 | 46.1 |
+| 2014 | 37.0 | 37.9 |
+| 2016/17 | 53.7 | 53.7 |
+| 2018/19 | 46.2 | 46.2 |
+| 2021 | 36.5 | 36.5 |
+| 2023 | 31.1 | 31.1 |
+| N | 4,328 | 4,328 |
+
+Four rounds match exactly and the sample sizes are identical. The 2012 and 2014 values differ by about one point, probably because the dashboard uses a different weight variable.
+
+**Lesson**: with survey data, the value labels in the raw data file and the official codebook are authoritative, not the display direction of an online visualisation tool, and scale direction should be checked wave by wave before analysis.
 
 ### 3. Affected and unaffected content
 
@@ -210,6 +256,7 @@ All on the `correction` branch of this repository:
 | `re_ana_corrected_py.py` | The same corrected analysis in Python (pyfixest) |
 | `ANALYSIS_PLAN.md` | Pre-registered plan, deviation log, results summary |
 | `build_plan_data.py`, `run_plan_v1.py` | Data construction and estimation for the extended analyses |
+| `check_dashboard.py` | Direction check of raw data against the official dashboard |
 | `results/` | All corrected results |
 
 ### 8. Timeline
@@ -219,3 +266,4 @@ All on the `correction` branch of this repository:
 | 2025-05-22 | Degree obtained (date on the USP diploma) |
 | 2026-07-26 | Dependent-variable coding issue identified during review; public access to the repository restricted |
 | 2026-10-12 | Direct correction completed; pre-registered plan committed and run; this erratum drafted |
+| 2026-10-16 | Cause identified: the official online tool and the raw data use opposite scoring directions |
