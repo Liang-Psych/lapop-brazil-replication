@@ -2,11 +2,11 @@
 
 **论文**：Xu, L. (2025). *The Impact of Chinese Development Finance on Brazilian Public Attitudes Toward China*（《中国发展融资对巴西公众对华态度的影响》）. 硕士学位论文，中国农业大学 / 圣保罗大学路易斯·德·凯罗斯农学院（ESALQ-USP）双学位项目。
 
-**勘误版本**：v1.1 · 2026-10-16（草稿，待导师审阅）
+**勘误版本**：v1.2 · 2026-10-16（草稿，待导师审阅）
 
 **问题发现日期**：2026-07-26
 
-> 带 【 】 的内容需由作者根据论文原文补充，例如章节号和表格编号。
+> 文中页码均为论文正文所印页码。
 
 ---
 
@@ -23,6 +23,8 @@
 - **错误**：分析脚本 `lapop_12.R` 至 `lapop_23.R` 直接使用原始取值（`china_attitude = mil10a`），因此**数值越大表示越不信任**；但论文将其解读为数值越大态度越积极。对照变量 `mil10e`（美国政府的可信度）存在同样的问题。
 - **范围**：六轮全部受影响，方向一致。“不知道”和“拒答”已正确设为缺失值，没有混入 1 到 4 分。
 - **性质**：这是变量方向解读上的技术错误，不涉及数据篡改或选择性报告。原始数据、代码和结果记录均完整保留在本仓库中。
+- **论文数字可完整复现**：用原始编码重跑论文表 2 至表 6 的全部模型，每个系数和 p 值都与论文一致（见 4.1 节），证明论文结果正是来自这一未反转的变量。
+- **同类问题**：控制变量 `m1`（总统执政评价，论文中记为 `presidential_approval_rating`）在原始数据中同样为 1 = 很好 … 5 = 很差，数值越大评价越差，而论文按“支持率”解读。它不影响中国项目系数的估计，但论文对该控制变量的解读同样有误。
 
 #### 错误成因：官方在线工具与原始数据的计分方向相反
 
@@ -48,27 +50,64 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 
 ### 3. 受影响与不受影响的内容
 
-**受影响，应撤回：**
+**受影响，应撤回或更正：**
 
-1. 摘要及结论中“中国发展融资项目与巴西当地居民对中国的态度存在显著正相关”“中国的发展融资能够产生积极的软实力回报”的表述。【第 X 章，表 X】
-2. 异质性结论：“在欠发达城市产生更显著的积极态度效应”“经常接触新闻媒体的个体表现出更强的积极态度反应”，以及城乡分组结果。【第 X 章，表 X】
-3. 基于上述定量结果提出的政策启示。【第 X 章】
+| 位置 | 原内容 | 处理 |
+|---|---|---|
+| 中文摘要（第 I–II 页）、ABSTRACT（第 III–IV 页）、RESUMO（第 V–VI 页） | 中国发展融资项目与对华态度显著正相关、产生软实力回报；欠发达城市效应更强；常接触新闻者反应更积极 | 撤回 |
+| 4.2.1 节（第 27 页） | 量表说明“1 = Not at all trustworthy … 4 = Very trustworthy” | 该说明与官方在线工具方向一致，但与分析实际使用的变量相反。分析中的变量为 1 = 非常可信 … 4 = 完全不可信 |
+| 4.2.1 节图 1 及说明（第 28 页） | 图 1 为官方仪表盘截图，数据正确；“37.9% 认为有些可信或非常可信”也正确。但“态度主要为中性到温和正面”“总体正面”的描述不准确 | 更正为：约 62.0% 的受访者认为中国政府“不太可信”或“完全不可信” |
+| 4.3 节表 1 及说明（第 31 页） | `china_attitude` 均值 2.79 被解读为“总体正面” | 2.79 为原始编码（越大越不信任）。按“越大越信任”计，均值为 2.21（1–4 分），偏向不信任 |
+| 5.1 节表 2 及说明（第 35–36 页） | 主效应为正，支持假设 1；年龄、教育、总统支持率、民主偏好与对华态度关系的解读 | 主效应撤回；因变量方向相反，所有控制变量的解读随之反转，其中总统执政评价本身也是反向计分（见第 2 节），这些解读一并撤回 |
+| 5.2 节表 3 及文中未列表的稳健性检验（第 37–38 页） | `if_aid` 结果；“城市固定效应、有序 logit、其他聚类与 bootstrap 均不改变结论” | 撤回 |
+| 5.3 节表 4–6（第 38–42 页） | 城乡、城市发展水平、媒体接触三项异质性分析；假设 2a、2b 获得支持 | 撤回 |
+| 5.4 节（第 42–45 页） | 以上述结果论证直接收益、信息、象征政治三个机制 | 撤回依赖定量结果的部分 |
+| 5.5 节（第 45–47 页） | 对中国发展融资策略的建议 | 撤回 |
+| 6.3–6.5 节（第 54–56 页） | 案例“印证”“验证”定量研究的主效应及发展水平、信息传播调节效应 | 撤回“印证定量结果”的表述；案例描述本身保留 |
+| 7.1 节（第 57–58 页） | 研究发现第一、二点，及第三点中“案例支持定量结果” | 撤回 |
+| 7.2 节（第 58–59 页） | 依赖上述定量结论的理论贡献 | 撤回相应部分 |
+| 7.4 节（第 61–62 页） | 第一、二、四点政策启示中依赖定量结果的部分 | 撤回相应部分 |
+
+**表格呈现问题（与编码错误无关，一并更正）**：表 2 至表 6 中，变量名右侧带星号的数字是 p 值，括号内的数字是回归系数，表中没有报告标准误。例如表 2 模型 1 的“0.000663 \*\*\*”是 p 值，“(0.03713)”是系数。正文引用的系数与括号内的数字一致。
 
 **不受影响：**
 
 1. LAPOP 六轮调查与 AidData 中国发展融资地理空间数据的整合（4,318 名受访者、499 个城市）。
-2. 贝罗蒙特特高压输电线项目与中巴科技小院项目的案例研究资料及其对当地评价机制的描述。但案例结论**不能**再被表述为与定量结果相互印证，也不能推广为巴西整体的情况。
+2. 第 2、3 章的文献综述与理论框架（作为有待检验的假设）。
+3. 第 6 章两个案例的田野资料及其对当地评价机制的描述。但案例结论**不能**再被表述为与定量结果相互印证，也不能推广为巴西整体的情况。
+4. 7.3 节已指出“对华态度原本较好的城市可能更容易获得项目”的反向因果风险。修正分析中的事前趋势检验（4.2 节）支持这一担忧。
 
 ### 4. 修正后的结果
 
 修正方法：将因变量统一反转为 `china_trust = 5 − mil10a`（1 = 完全不可信 … 4 = 非常可信）。
 
-#### 4.1 直接修正（与原论文相同的模型，以及补充年份固定效应和城市聚类标准误）
+#### 4.1 论文表 2 至表 6 的复现与方向修正
 
-| 模型 | `aid_n` 系数 | 标准误 | p | N |
+用论文的模型和样本（对华题非缺失，混合 OLS）重跑，原始编码下的系数与论文完全一致；修正方向后，所有系数符号反转：
+
+| 论文表格 | 模型 | 论文报告系数 | 复现（原始编码） | 修正方向后 | p | 论文所列 N | 实际 N |
+|---|---|---|---|---|---|---|---|
+| 表 2 | 模型 1 | 0.037 | 0.037 | −0.037 | 0.0007 | 4,316 | 4,318 |
+| 表 2 | 模型 2 | 0.040 | 0.040 | −0.040 | 0.0004 | 4,190 | 4,200 |
+| 表 2 | 模型 3 | 0.034 | 0.034 | −0.034 | 0.003 | 4,120 | 4,131 |
+| 表 3 | 模型 1（`if_aid`） | 0.114 | 0.114 | −0.114 | 0.001 | 4,316 | 4,318 |
+| 表 3 | 模型 2 | 0.122 | 0.122 | −0.122 | 0.0008 | 4,190 | 4,200 |
+| 表 3 | 模型 3 | 0.104 | 0.104 | −0.104 | 0.006 | 4,120 | 4,131 |
+| 表 4 | 城市 | 0.032 | 0.032 | −0.032 | 0.006 | 3,665 | 3,675 |
+| 表 4 | 农村 | 0.165 | 0.165 | −0.165 | 0.043 | 446 | 456 |
+| 表 5 | 高发展城市 | 0.023 | 0.023 | −0.023 | 0.066 | 1,872 | 1,882 |
+| 表 5 | 低发展城市 | 0.104 | 0.104 | −0.104 | 0.001 | 2,239 | 2,249 |
+| 表 6 | 常看新闻 | 0.032 | 0.032 | −0.032 | 0.007 | 3,756 | 3,766 |
+| 表 6 | 少看新闻 | 0.065 | 0.065 | −0.065 | 0.15 | 355 | 365 |
+
+- 论文表格中的“sample size”实为残差自由度（N 减去参数个数），例如表 2 模型 2 为 4,200 − 10 = 4,190。换算后与复现样本完全一致。
+- 复现脚本：`replicate_thesis_tables.py`，结果见 `results/thesis_tables_replication.csv`。
+
+修正方向后，混合 OLS 全部呈负相关，但这些模型都没有控制调查年份。下表补充年份固定效应和城市聚类标准误（样本为对华、对美两题均作答者；以 4,318 人为样本时结论相同，例如年份固定效应模型系数为 +0.006，p = 0.54）：
+
+| 模型（修正方向） | `aid_n` 系数 | 标准误 | p | N |
 |---|---|---|---|---|
-| 原论文写法（编码未修正） | +0.038 | 0.012 | 0.001 | 3,871 |
-| 修正方向，混合 OLS | −0.038 | 0.012 | 0.001 | 3,871 |
+| 混合 OLS + 控制变量 | −0.038 | 0.012 | 0.001 | 3,871 |
 | + 年份固定效应，城市聚类 | +0.007 | 0.009 | 0.43 | 3,842 |
 | + 年份固定效应 + log 人均 GDP | +0.016 | 0.010 | 0.10 | 3,805 |
 | + 年份与城市固定效应 | −0.034 | 0.017 | 0.046 | 3,564 |
@@ -111,7 +150,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 
 ### 6. 其他需要说明的问题
 
-- **样本口径**：原论文报告的样本量 4,318 对应“对华题非缺失”的口径；原分析脚本 `re_ana.R` 的回归另外要求对美题也非缺失，实际样本为 3,973。修正分析以 4,318 为主样本，以 3,973 为稳健性检验，两者结论一致。
+- **样本口径**：论文表 2 至表 6 使用的是“对华题非缺失”的样本（4,318 人），4.1 节的复现已经确认。仓库中归档的 `re_ana.R` 另外要求对美题也非缺失（3,973 人），与论文实际使用的样本不同，应以 4.1 节的复现为准。修正分析以 4,318 为主样本，以 3,973 为稳健性检验，两者结论一致。
 - **题目措辞**：2023 年题目为“中国的可信度”，此前各轮为“中国政府的可信度”。剔除 2023 年后结论不变。
 - **市镇坐标**：空间暴露分析使用的市镇驻地坐标来自 kelvins/municipios-brasileiros（IBGE 来源，MIT 许可）。
 
@@ -126,6 +165,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | `re_ana_corrected_py.py` | 同一修正分析的 Python（pyfixest）版本 |
 | `ANALYSIS_PLAN.md` | 预先登记的扩展分析计划、偏离记录、结果摘要 |
 | `build_plan_data.py`、`run_plan_v1.py` | 扩展分析的数据构建与估计脚本 |
+| `replicate_thesis_tables.py` | 复现论文表 2 至表 6 并给出修正方向后的结果 |
 | `check_dashboard.py` | 原始数据与官方仪表盘的方向核对 |
 | `results/` | 全部修正结果 |
 
@@ -136,7 +176,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | 2025-05-22 | 获得硕士学位（USP 学位证书所载日期） |
 | 2026-07-26 | 复核中发现因变量编码方向问题；仓库暂停公开访问 |
 | 2026-10-12 | 完成直接修正分析；提交预先登记的分析计划并运行；完成本勘误草稿 |
-| 2026-10-16 | 查明错误成因：官方在线工具与原始数据计分方向相反 |
+| 2026-10-16 | 查明错误成因：官方在线工具与原始数据计分方向相反；完整复现论文表 2 至表 6；对照论文全文列出受影响的章节 |
 
 ---
 
@@ -153,6 +193,8 @@ The dependent variable in the original thesis, attitudes toward China, was inter
 - **Error**: the scripts `lapop_12.R` to `lapop_23.R` used the raw values (`china_attitude = mil10a`), so **higher values meant less trust**, while the thesis interpreted higher values as more favourable attitudes. The comparison variable `mil10e` (trustworthiness of the US government) had the same issue.
 - **Scope**: all six waves are affected, in the same direction. "Don't know" and "No response" were correctly treated as missing and did not enter the 1–4 scale.
 - **Nature**: a technical error in interpreting the variable's direction. It involves no data manipulation or selective reporting. The original data, code and outputs are preserved in full in this repository.
+- **The thesis numbers replicate exactly**: re-running every model in Tables 2–6 with the raw coding reproduces each coefficient and p-value reported in the thesis (see Section 4.1), confirming that the thesis results come from this unreversed variable.
+- **A related issue**: the control variable `m1` (evaluation of the president's performance, labelled `presidential_approval_rating` in the thesis) is also coded 1 = very good … 5 = very bad in the raw data, so higher values mean a worse evaluation, whereas the thesis interprets it as approval. This does not affect the estimates for Chinese projects, but the thesis's interpretation of this control is also incorrect.
 
 #### How the error arose: the official online tool and the raw data use opposite directions
 
@@ -178,27 +220,66 @@ Four rounds match exactly and the sample sizes are identical. The 2012 and 2014 
 
 ### 3. Affected and unaffected content
 
-**Affected, to be withdrawn:**
+Page numbers refer to the printed page numbers of the thesis.
 
-1. Statements in the abstract and conclusions that Chinese development finance projects are significantly and positively associated with local Brazilian attitudes toward China and generate positive soft-power returns. [Chapter X, Table X]
-2. Heterogeneity findings: stronger positive effects in less-developed cities, stronger positive responses among frequent news consumers, and the urban/rural split results. [Chapter X, Table X]
-3. Policy implications derived from these quantitative findings. [Chapter X]
+**Affected, to be withdrawn or corrected:**
+
+| Location | Original content | Action |
+|---|---|---|
+| 中文摘要 (pp. I–II), ABSTRACT (pp. III–IV), RESUMO (pp. V–VI) | Significant positive association between Chinese development finance and attitudes toward China, implying soft-power returns; stronger effects in less-developed cities; more positive responses among frequent news consumers | Withdrawn |
+| Section 4.2.1 (p. 27) | Scale described as "1 = Not at all trustworthy … 4 = Very trustworthy" | This matches the official online tool but is the reverse of the variable actually used. In the analysis, 1 = very trustworthy … 4 = not at all trustworthy |
+| Section 4.2.1, Figure 1 and text (p. 28) | Figure 1 is a screenshot of the official dashboard and its data are correct; "37.9% view the Chinese government as somewhat or very trustworthy" is also correct. The description of attitudes as "predominantly neutral to moderately positive" and "generally favorable" is not accurate | Corrected: about 62.0% of respondents view the Chinese government as not very or not at all trustworthy |
+| Section 4.3, Table 1 and text (p. 31) | Mean `china_attitude` of 2.79 described as "generally positive" | 2.79 is on the raw coding (higher = less trust). On a higher-is-more-trust scale the mean is 2.21 (1–4), leaning toward distrust |
+| Section 5.1, Table 2 and text (pp. 35–36) | Positive main effect supporting Hypothesis 1; interpretation of age, education, presidential approval and democratic preference | Main effect withdrawn. Because the dependent variable is reversed, all control-variable interpretations are reversed too, and the presidential evaluation item is itself reverse-coded (see Section 2); these interpretations are withdrawn |
+| Section 5.2, Table 3 and unreported robustness checks (pp. 37–38) | `if_aid` results; claims that city fixed effects, ordered logit, alternative clustering and bootstrapping leave the results unchanged | Withdrawn |
+| Section 5.3, Tables 4–6 (pp. 38–42) | Urban/rural, city development level and media exposure heterogeneity; support for Hypotheses 2a and 2b | Withdrawn |
+| Section 5.4 (pp. 42–45) | Evidence for the direct-benefit, information and symbolic-politics mechanisms based on the above | Parts relying on the quantitative results withdrawn |
+| Section 5.5 (pp. 45–47) | Implications for China's development finance strategy | Withdrawn |
+| Sections 6.3–6.5 (pp. 54–56) | Statements that the cases corroborate or verify the quantitative main effect and the development-level and information moderating effects | Statements of corroboration withdrawn; the case descriptions remain |
+| Section 7.1 (pp. 57–58) | Findings one and two, and the statement in finding three that the cases support the quantitative results | Withdrawn |
+| Section 7.2 (pp. 58–59) | Theoretical contributions that rely on the quantitative conclusions | Corresponding parts withdrawn |
+| Section 7.4 (pp. 61–62) | Parts of policy implications one, two and four that rely on the quantitative results | Corresponding parts withdrawn |
+
+**Table presentation issue (unrelated to the coding error, corrected here as well)**: in Tables 2–6, the starred number next to each variable is the p-value and the number in parentheses is the regression coefficient; standard errors are not reported. For example, in Table 2, Model 1, "0.000663 \*\*\*" is the p-value and "(0.03713)" is the coefficient. The coefficients cited in the text match the numbers in parentheses.
 
 **Unaffected:**
 
 1. The integration of six LAPOP waves with AidData's geospatial dataset of Chinese development finance (4,318 respondents in 499 municipalities).
-2. The case-study material on the Belo Monte UHV transmission line and the China–Brazil Science and Technology Backyard, and its description of local evaluation mechanisms. However, the case findings can **no longer** be presented as corroborating the quantitative results, nor generalised to Brazil as a whole.
+2. The literature review and theoretical framework in Chapters 2 and 3, as hypotheses to be tested.
+3. The field material for the two cases in Chapter 6 and its description of local evaluation mechanisms. However, the case findings can **no longer** be presented as corroborating the quantitative results, nor generalised to Brazil as a whole.
+4. Section 7.3 already noted the risk of reverse causality, namely that cities with more favourable attitudes toward China may be more likely to receive projects. The pre-trend test in the corrected analysis (Section 4.2) supports this concern.
 
 ### 4. Corrected results
 
 Correction: the dependent variable is reversed throughout as `china_trust = 5 − mil10a` (1 = not at all trustworthy … 4 = very trustworthy).
 
-#### 4.1 Direct correction (original specification, plus survey-year fixed effects and city-clustered standard errors)
+#### 4.1 Replication and direction correction of Tables 2–6
 
-| Model | `aid_n` coefficient | SE | p | N |
+Re-running the thesis models on the thesis sample (respondents with a non-missing China item, pooled OLS) with the raw coding reproduces the reported coefficients exactly; after correcting the direction, every coefficient changes sign:
+
+| Thesis table | Model | Reported coefficient | Replicated (raw coding) | Corrected direction | p | N as reported | Actual N |
+|---|---|---|---|---|---|---|---|
+| Table 2 | Model 1 | 0.037 | 0.037 | −0.037 | 0.0007 | 4,316 | 4,318 |
+| Table 2 | Model 2 | 0.040 | 0.040 | −0.040 | 0.0004 | 4,190 | 4,200 |
+| Table 2 | Model 3 | 0.034 | 0.034 | −0.034 | 0.003 | 4,120 | 4,131 |
+| Table 3 | Model 1 (`if_aid`) | 0.114 | 0.114 | −0.114 | 0.001 | 4,316 | 4,318 |
+| Table 3 | Model 2 | 0.122 | 0.122 | −0.122 | 0.0008 | 4,190 | 4,200 |
+| Table 3 | Model 3 | 0.104 | 0.104 | −0.104 | 0.006 | 4,120 | 4,131 |
+| Table 4 | Urban | 0.032 | 0.032 | −0.032 | 0.006 | 3,665 | 3,675 |
+| Table 4 | Rural | 0.165 | 0.165 | −0.165 | 0.043 | 446 | 456 |
+| Table 5 | Higher-development cities | 0.023 | 0.023 | −0.023 | 0.066 | 1,872 | 1,882 |
+| Table 5 | Lower-development cities | 0.104 | 0.104 | −0.104 | 0.001 | 2,239 | 2,249 |
+| Table 6 | Frequent news exposure | 0.032 | 0.032 | −0.032 | 0.007 | 3,756 | 3,766 |
+| Table 6 | Infrequent news exposure | 0.065 | 0.065 | −0.065 | 0.15 | 355 | 365 |
+
+- The "sample size" reported in the thesis tables is in fact the residual degrees of freedom (N minus the number of parameters); for example, Table 2, Model 2: 4,200 − 10 = 4,190. After this adjustment it matches the replication exactly.
+- Replication script: `replicate_thesis_tables.py`; results in `results/thesis_tables_replication.csv`.
+
+With the corrected direction, all pooled OLS estimates are negative, but none of these models controls for survey year. The table below adds survey-year fixed effects and city-clustered standard errors (sample: respondents who answered both the China and US items; conclusions are the same with the 4,318-respondent sample, e.g. +0.006, p = 0.54 in the year fixed-effects model):
+
+| Model (corrected direction) | `aid_n` coefficient | SE | p | N |
 |---|---|---|---|---|
-| Original (uncorrected coding) | +0.038 | 0.012 | 0.001 | 3,871 |
-| Corrected direction, pooled OLS | −0.038 | 0.012 | 0.001 | 3,871 |
+| Pooled OLS + controls | −0.038 | 0.012 | 0.001 | 3,871 |
 | + year FE, city-clustered SE | +0.007 | 0.009 | 0.43 | 3,842 |
 | + year FE + log GDP per capita | +0.016 | 0.010 | 0.10 | 3,805 |
 | + year and city FE | −0.034 | 0.017 | 0.046 | 3,564 |
@@ -241,7 +322,7 @@ To avoid specification searching after the corrected results were known, the aut
 
 ### 6. Further notes
 
-- **Sample definition**: the thesis reports N = 4,318, which corresponds to respondents with a non-missing China item. The regressions in the original script `re_ana.R` additionally required a non-missing US item, giving N = 3,973. The corrected analysis uses 4,318 as the main sample and 3,973 as a robustness check; conclusions are the same.
+- **Sample definition**: Tables 2–6 of the thesis use respondents with a non-missing China item (N = 4,318), as confirmed by the replication in Section 4.1. The archived script `re_ana.R` additionally requires a non-missing US item (N = 3,973), which differs from the sample actually used in the thesis; the replication in Section 4.1 is authoritative. The corrected analysis uses 4,318 as the main sample and 3,973 as a robustness check; conclusions are the same.
 - **Question wording**: in 2023 the item asks about the trustworthiness of "China"; earlier waves ask about "the Chinese government". Conclusions are unchanged when 2023 is excluded.
 - **Municipal coordinates**: the spatial-exposure analysis uses municipal seat coordinates from kelvins/municipios-brasileiros (IBGE-sourced, MIT licence).
 
@@ -256,6 +337,7 @@ All on the `correction` branch of this repository:
 | `re_ana_corrected_py.py` | The same corrected analysis in Python (pyfixest) |
 | `ANALYSIS_PLAN.md` | Pre-registered plan, deviation log, results summary |
 | `build_plan_data.py`, `run_plan_v1.py` | Data construction and estimation for the extended analyses |
+| `replicate_thesis_tables.py` | Replication of thesis Tables 2–6 and their corrected-direction versions |
 | `check_dashboard.py` | Direction check of raw data against the official dashboard |
 | `results/` | All corrected results |
 
@@ -266,4 +348,4 @@ All on the `correction` branch of this repository:
 | 2025-05-22 | Degree obtained (date on the USP diploma) |
 | 2026-07-26 | Dependent-variable coding issue identified during review; public access to the repository restricted |
 | 2026-10-12 | Direct correction completed; pre-registered plan committed and run; this erratum drafted |
-| 2026-10-16 | Cause identified: the official online tool and the raw data use opposite scoring directions |
+| 2026-10-16 | Cause identified: the official online tool and the raw data use opposite scoring directions; Tables 2–6 fully replicated; affected sections listed against the full thesis text |
