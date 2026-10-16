@@ -180,6 +180,10 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | 2026-10-12 | 完成直接修正分析；提交预先登记的分析计划并运行；完成本勘误草稿 |
 | 2026-10-16 | 查明错误成因：官方在线工具与原始数据计分方向相反；完整复现论文表 2 至表 6；对照论文全文列出受影响的章节 |
 
+### 9. AI 工具使用声明
+
+在准备本勘误的过程中，作者使用了 AI 助手（Anthropic 公司的 Claude）辅助以下工作：核对原始数据的编码方向、编写和检查复现与修正分析的代码、对照论文全文整理受影响的内容，以及起草本勘误的文字。所有分析均由作者核验，结果可通过复现仓库中的代码独立复现。作者对本勘误的全部内容负责。
+
 ---
 
 ## English Version
@@ -351,3 +355,7 @@ All in the replication repository https://github.com/Liang-Psych/lapop-brazil-re
 | 2026-07-26 | Dependent-variable coding issue identified during review; public access to the repository restricted |
 | 2026-10-12 | Direct correction completed; pre-registered plan committed and run; this erratum drafted |
 | 2026-10-16 | Cause identified: the official online tool and the raw data use opposite scoring directions; Tables 2–6 fully replicated; affected sections listed against the full thesis text |
+
+### 9. Use of AI tools
+
+In preparing this erratum, the author used an AI assistant (Claude, developed by Anthropic) to help check the coding direction of the raw data, write and check the code for the replication and corrected analyses, compile the affected content against the full thesis text, and draft the text of this erratum. All analyses were verified by the author and can be reproduced independently with the code in the replication repository. The author takes full responsibility for the content of this erratum.
