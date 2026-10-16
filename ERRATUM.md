@@ -2,7 +2,7 @@
 
 **Thesis**: Xu, L. (2025). *The Impact of Chinese Development Finance on Brazilian Public Attitudes Toward China*. Master's thesis, joint degree programme of China Agricultural University and the Luiz de Queiroz College of Agriculture (ESALQ), University of São Paulo.
 
-**Version**: v1.3 · 2026-10-16
+**Version**: v1.4 · 2026-10-16
 
 **Replication materials**: https://github.com/Liang-Psych/lapop-brazil-replication
 
@@ -75,7 +75,7 @@ Page numbers refer to the printed page numbers of the thesis.
 1. The integration of six LAPOP waves with AidData's geospatial dataset of Chinese development finance (4,318 respondents in 499 municipalities).
 2. The literature review and theoretical framework in Chapters 2 and 3, as hypotheses to be tested.
 3. The field material for the two cases in Chapter 6 and its description of local evaluation mechanisms. However, the case findings can **no longer** be presented as corroborating the quantitative results, nor generalised to Brazil as a whole.
-4. Section 7.3 already noted the risk of reverse causality, namely that cities with more favourable attitudes toward China may be more likely to receive projects. The pre-trend test in the corrected analysis (Section 4.2) supports this concern.
+4. Section 7.3 already noted the risk of reverse causality, namely that cities with more favourable attitudes toward China may be more likely to receive projects. The corrected analysis can neither confirm nor rule out this concern.
 
 ## 4. Corrected results
 
@@ -124,9 +124,9 @@ Notes:
 - With the corrected direction, pooled OLS shows a significant **negative** association. However, trust in China declined over the survey period (annual mean 2.63 in 2017, 1.96 in 2023) while Chinese projects accumulated. The association disappears once survey-year fixed effects are added, indicating that the pooled result mainly reflects a common time trend.
 - Only the specification with city fixed effects is marginally significant and negative (p = 0.046); no other specification supports it, so it is not treated as a robust finding.
 
-### 4.2 Pre-registered extended analyses
+### 4.2 Pre-specified extended analyses
 
-To avoid specification searching after the corrected results were known, the author committed the specifications, inference methods and reporting rules for the extended analyses to `ANALYSIS_PLAN.md` on 2026-10-12, before running them. Results (main sample N = 4,318; Holm correction for multiple testing):
+To avoid specification searching after the corrected results were known, the author committed the specifications, inference methods and reporting rules for the extended analyses to `ANALYSIS_PLAN.md` on 2026-10-12, before running them. The plan was not registered on an external platform, and some corrected results had already been seen when it was written; the plan lists those results. Results (main sample N = 4,318; Holm correction for multiple testing):
 
 | Test | Estimate | 95% CI | Holm-adjusted p |
 |---|---|---|---|
@@ -137,14 +137,14 @@ To avoid specification searching after the corrected results were known, the aut
 | Event study (Sun & Abraham), average post-period effect | 0.122 | [−0.036, 0.281] | 0.66 |
 
 - None of the five tests is significant. Results are unchanged using the sample that answered both items, dropping 2023, or using 25 km or 100 km radii.
-- The event study's joint pre-trend test is significant (F(2, 492) = 3.41, p = 0.034): municipalities that later received projects already had higher trust in China **before** project completion. The event-study estimates are therefore not interpreted causally. This also suggests that the association observed in the thesis may partly reflect project siting rather than project effects.
+- The event study's joint pre-trend test is significant (F(2, 492) = 3.41, p = 0.034). Because the model includes municipality fixed effects, the test compares changes within municipalities, not levels across them: relative to municipalities without projects, trust in municipalities that later received projects was higher five or more years before completion than in the year before completion. The parallel-trends assumption therefore does not hold, and the event-study estimates are not interpreted causally. The reference period (the year before completion) contains only 55 respondents in 16 municipalities, so the test itself is imprecise. It does not show whether projects were sited in municipalities with more favourable attitudes.
 - The seven deviations from the plan and their rationale are listed in Section 8 of `ANALYSIS_PLAN.md`.
 
 ## 5. Corrected conclusions
 
 1. There is no robust evidence that Chinese development finance projects are associated with Brazilians' trust in the Chinese government. The confidence intervals are narrow: each additional completed project within 50 km changes trust (1–4 scale) by no more than about +0.02 or −0.01 points.
 2. Changes in trust over the survey period are driven mainly by nationwide time trends rather than local project exposure.
-3. There are signs that project siting correlates with pre-existing local attitudes toward China; future work needs stronger causal identification.
+3. These data cannot show whether project siting is related to pre-existing local attitudes toward China; the pre-trends in the event study show that stronger causal identification is needed.
 4. None of the three heterogeneity findings in the thesis holds.
 5. The case studies show positive local evaluations in specific communities and project types, but these cannot be generalised into an aggregate "soft-power return".
 
@@ -163,7 +163,7 @@ All in the replication repository https://github.com/Liang-Psych/lapop-brazil-re
 | `lapop_12.R` … `lapop_23.R`, `re_ana.R` | Original thesis version, unchanged |
 | `re_ana_corrected.R`, `pixi.toml` | Corrected analysis in R; run with `pixi run corrected` |
 | `re_ana_corrected_py.py` | The same corrected analysis in Python (pyfixest) |
-| `ANALYSIS_PLAN.md` | Pre-registered plan for the extended analyses, deviation log, results summary |
+| `ANALYSIS_PLAN.md` | Pre-specified plan for the extended analyses, deviation log, results summary |
 | `build_plan_data.py`, `run_plan_v1.py` | Data construction and estimation for the extended analyses |
 | `replicate_thesis_tables.py` | Replication of thesis Tables 2–6 and their corrected-direction versions |
 | `check_dashboard.py` | Direction check of raw data against the official dashboard |
@@ -174,8 +174,8 @@ All in the replication repository https://github.com/Liang-Psych/lapop-brazil-re
 | Date | Event |
 |---|---|
 | 2025-05-22 | Degree obtained (date on the USP diploma) |
-| 2026-07-26 | Dependent-variable coding issue identified during review; public access to the repository restricted |
-| 2026-10-12 | Direct correction completed; pre-registered plan committed and run; this erratum drafted |
+| 2026-07-26 | Dependent-variable coding issue identified during review; public access to the original repository restricted |
+| 2026-10-12 | Direct correction completed; pre-specified plan committed and run; this erratum drafted |
 | 2026-10-16 | Cause identified: the official online tool and the raw data use opposite scoring directions; Tables 2–6 fully replicated; affected sections listed against the full thesis text; erratum finalised |
 
 ## 9. Use of AI tools
@@ -188,7 +188,7 @@ In preparing this erratum, the author used an AI assistant (Claude, developed by
 
 **论文**：许亮（2025）。《中国发展融资对巴西公众对华态度的影响》（*The Impact of Chinese Development Finance on Brazilian Public Attitudes Toward China*）。硕士学位论文，中国农业大学与圣保罗大学路易斯·德·凯罗斯农学院（ESALQ）双学位项目。
 
-**版本**：v1.3 · 2026-10-16
+**版本**：v1.4 · 2026-10-16
 
 **复现材料**：https://github.com/Liang-Psych/lapop-brazil-replication
 
@@ -261,7 +261,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 1. LAPOP 六轮调查与 AidData 中国发展融资地理空间数据的整合（4,318 名受访者、499 个城市）。
 2. 第 2、3 章的文献综述与理论框架（作为有待检验的假设）。
 3. 第 6 章两个案例的田野资料及其对当地评价机制的描述。但案例结论**不能**再被表述为与定量结果相互印证，也不能推广为巴西整体的情况。
-4. 7.3 节已指出“对华态度原本较好的城市可能更容易获得项目”的反向因果风险。修正分析中的事前趋势检验（4.2 节）支持这一担忧。
+4. 7.3 节已指出“对华态度原本较好的城市可能更容易获得项目”的反向因果风险。修正分析既不能证实也不能排除这一担忧。
 
 ## 4. 修正后的结果
 
@@ -310,9 +310,9 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 - 修正方向后，混合 OLS 呈显著**负**相关。但巴西民众的对华信任在调查期间整体下降（年度均值 2017 年为 2.63，2023 年为 1.96），而中国项目同期持续增加。加入年份固定效应后效应消失，说明混合 OLS 的结果主要反映共同的时间趋势。
 - 只有同时加入城市固定效应的规格在 5% 水平上勉强显著为负（p = 0.046），其他规格均不支持，因此不作为稳健结论。
 
-### 4.2 预先登记的扩展分析
+### 4.2 预先确定的扩展分析
 
-为避免在已知结果后进行规格搜索，作者于 2026-10-12 先将扩展分析的规格、推断方法和结论措辞规则写入 `ANALYSIS_PLAN.md` 并提交到版本库，之后才运行。结果如下（主样本 N = 4,318，Holm 多重检验校正）：
+为避免在已知结果后进行规格搜索，作者于 2026-10-12 先将扩展分析的规格、推断方法和结论措辞规则写入 `ANALYSIS_PLAN.md` 并提交到版本库，之后才运行。该计划没有在外部平台登记；撰写时作者已看到部分修正结果，计划中逐项列明了这些结果。结果如下（主样本 N = 4,318，Holm 多重检验校正）：
 
 | 检验 | 估计值 | 95% 置信区间 | Holm 校正 p |
 |---|---|---|---|
@@ -323,14 +323,14 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | 事件研究（Sun & Abraham），事后平均效应 | 0.122 | [−0.036, 0.281] | 0.66 |
 
 - 五项均不显著。改用两题均作答的样本、剔除 2023 年、改用 25 或 100 公里范围，结论均不变。
-- 事件研究的事前趋势联合检验显著（F(2, 492) = 3.41，p = 0.034）：后来获得项目的城市在项目完工**之前**对华信任就已偏高。因此事件研究结果不作因果解读。这也提示原论文观察到的相关性可能部分来自项目选址，而非项目本身的影响。
+- 事件研究的事前趋势联合检验显著（F(2, 492) = 3.41，p = 0.034）。由于模型包含城市固定效应，该检验比较的是同一城市内部的变化，而不是城市之间的水平差异：与没有项目的城市相比，后来获得项目的城市在完工前 5 年以上的对华信任，相对完工前 1 年偏高。平行趋势假设因此不成立，事件研究结果不作因果解读。作为基准的完工前 1 年只有 16 个城市的 55 名受访者，这一检验本身也不够精确。它不能说明项目是否被选在原本对华态度较好的地方。
 - 执行中与计划的 7 处偏离及其理由，见 `ANALYSIS_PLAN.md` 第 8 节。
 
 ## 5. 修正后的结论
 
 1. 没有稳健证据表明中国发展融资项目与巴西民众对中国政府的信任相关。置信区间较窄：50 公里内每增加一个已完工项目，对华信任（1 到 4 分）的变化可以排除大于约 +0.02 分或小于约 −0.01 分的效应。
 2. 调查期间对华信任的变化主要由全国性的时间趋势驱动，而非地方层面的项目暴露。
-3. 有迹象表明项目选址与当地原有的对华态度相关，后续研究需要更严格的因果识别设计。
+3. 现有数据无法判断项目选址是否与当地原有的对华态度相关；事件研究的事前趋势表明，后续研究需要更严格的因果识别设计。
 4. 原论文的三项异质性结论均不成立。
 5. 案例研究显示，在特定社区和特定类型的项目中可以观察到当地的积极评价；但这些发现不能推广为整体层面的“软实力回报”。
 
@@ -349,7 +349,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | `lapop_12.R` … `lapop_23.R`、`re_ana.R` | 原论文版本，未作改动 |
 | `re_ana_corrected.R`、`pixi.toml` | 修正版分析（R），`pixi run corrected` |
 | `re_ana_corrected_py.py` | 同一修正分析的 Python（pyfixest）版本 |
-| `ANALYSIS_PLAN.md` | 预先登记的扩展分析计划、偏离记录、结果摘要 |
+| `ANALYSIS_PLAN.md` | 预先确定的扩展分析计划、偏离记录、结果摘要 |
 | `build_plan_data.py`、`run_plan_v1.py` | 扩展分析的数据构建与估计脚本 |
 | `replicate_thesis_tables.py` | 复现论文表 2 至表 6 并给出修正方向后的结果 |
 | `check_dashboard.py` | 原始数据与官方仪表盘的方向核对 |
@@ -360,8 +360,8 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | 日期 | 事项 |
 |---|---|
 | 2025-05-22 | 获得硕士学位（USP 学位证书所载日期） |
-| 2026-07-26 | 复核中发现因变量编码方向问题；仓库暂停公开访问 |
-| 2026-10-12 | 完成直接修正分析；提交预先登记的分析计划并运行；完成本勘误草稿 |
+| 2026-07-26 | 复核中发现因变量编码方向问题；原仓库暂停公开访问 |
+| 2026-10-12 | 完成直接修正分析；提交预先确定的分析计划并运行；完成本勘误草稿 |
 | 2026-10-16 | 查明错误成因：官方在线工具与原始数据计分方向相反；完整复现论文表 2 至表 6；对照论文全文列出受影响的章节；本勘误定稿 |
 
 ## 9. AI 工具使用声明
