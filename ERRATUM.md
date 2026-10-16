@@ -103,26 +103,26 @@ Re-running the thesis models on the thesis sample (respondents with a non-missin
 - The "sample size" reported in the thesis tables is in fact the residual degrees of freedom (N minus the number of parameters); for example, Table 2, Model 2: 4,200 − 10 = 4,190. After this adjustment it matches the replication exactly.
 - Replication script: `replicate_thesis_tables.py`; results in `results/thesis_tables_replication.csv`.
 
-With the corrected direction, all pooled OLS estimates are negative, but none of these models controls for survey year. The table below adds survey-year fixed effects and city-clustered standard errors (sample: respondents who answered both the China and US items; conclusions are the same with the 4,318-respondent sample, e.g. +0.006, p = 0.54 in the year fixed-effects model):
+With the corrected direction, all pooled OLS estimates are negative, but none of these models controls for survey year. The table below adds survey-year fixed effects and city-clustered standard errors, using the same sample as the thesis (respondents with a non-missing China item):
 
 | Model (corrected direction) | `aid_n` coefficient | SE | p | N |
 |---|---|---|---|---|
-| Pooled OLS + controls | −0.038 | 0.012 | 0.001 | 3,871 |
-| + year FE, city-clustered SE | +0.007 | 0.009 | 0.43 | 3,842 |
-| + year FE + log GDP per capita | +0.016 | 0.010 | 0.10 | 3,805 |
-| + year and city FE | −0.034 | 0.017 | 0.046 | 3,564 |
-| `if_aid`, year FE | +0.011 | 0.038 | 0.77 | 3,842 |
-| Placebo: trust in US government | +0.007 | 0.012 | 0.55 | 3,842 |
+| Pooled OLS + controls (= Table 2, Model 2) | −0.040 | 0.011 | 0.0004 | 4,200 |
+| + year FE, city-clustered SE | +0.006 | 0.009 | 0.54 | 4,169 |
+| + year FE + log GDP per capita | +0.014 | 0.010 | 0.17 | 4,131 |
+| + year and city FE | −0.029 | 0.016 | 0.075 | 3,862 |
+| `if_aid`, year FE | −0.001 | 0.038 | 0.97 | 4,169 |
 
 | Formal interaction tests of the original heterogeneity claims (year FE, city-clustered SE) | Coefficient | p |
 |---|---|---|
-| `aid_n` × less-developed city | −0.011 | 0.78 |
-| `aid_n` × frequent news consumption | −0.012 | 0.60 |
-| `aid_n` × rural | −0.047 | 0.68 |
+| `aid_n` × less-developed city | −0.029 | 0.49 |
+| `aid_n` × frequent news consumption | −0.007 | 0.77 |
+| `aid_n` × rural | −0.078 | 0.44 |
 
 Notes:
-- With the corrected direction, pooled OLS shows a significant **negative** association. However, trust in China declined over the survey period (annual mean 2.63 in 2017, 1.96 in 2023) while Chinese projects accumulated. The association disappears once survey-year fixed effects are added, indicating that the pooled result mainly reflects a common time trend.
-- Only the specification with city fixed effects is marginally significant and negative (p = 0.046); no other specification supports it, so it is not treated as a robust finding.
+- With the corrected direction, pooled OLS shows a significant **negative** association. However, trust in China declined over the survey period (annual mean 2.61 in 2017, 1.95 in 2023) while Chinese projects accumulated. The association disappears once survey-year fixed effects are added, indicating that the pooled result mainly reflects a common time trend.
+- The model that also adds city fixed effects is negative but not significant at the 5% level (p = 0.075), and no other model supports a relationship in either direction.
+- Results: `results/corrected_supp_sampleB.csv` (script `rerun_supp_sampleB.py`).
 
 ### 4.2 Pre-specified extended analyses
 
@@ -136,7 +136,7 @@ To avoid choosing model specifications after seeing the results, the author comm
 | Completed vs committed-but-not-completed project locations | 0.064 | [−0.026, 0.153] | 0.67 |
 | Event study (Sun & Abraham), average post-period effect | 0.122 | [−0.036, 0.281] | 0.66 |
 
-- None of the five tests is significant. Results are unchanged using the sample that answered both items, dropping 2023, or using 25 km or 100 km radii.
+- None of the five tests is significant. Results are unchanged with a stricter sample definition (N = 3,973), when 2023 is dropped, or with 25 km or 100 km radii.
 - The event study's joint pre-trend test is significant (F(2, 492) = 3.41, p = 0.034). Because the model includes municipality fixed effects, the test compares changes within municipalities, not levels across them: relative to municipalities without projects, trust in municipalities that later received projects was higher five or more years before completion than in the year before completion. The parallel-trends assumption therefore does not hold, and the event-study estimates are not interpreted causally. The reference period (the year before completion) contains only 55 respondents in 16 municipalities, so the test itself is imprecise. It does not show whether projects were sited in municipalities with more favourable attitudes.
 - The seven deviations from the plan and their rationale are listed in Section 8 of `ANALYSIS_PLAN.md`.
 
@@ -150,7 +150,7 @@ To avoid choosing model specifications after seeing the results, the author comm
 
 ## 6. Further notes
 
-- **Sample definition**: Tables 2–6 of the thesis use respondents with a non-missing China item (N = 4,318), as confirmed by the replication in Section 4.1. The archived script `re_ana.R` additionally requires a non-missing US item (N = 3,973), which differs from the sample actually used in the thesis; the replication in Section 4.1 is authoritative. The corrected analysis uses 4,318 as the main sample and 3,973 as a robustness check; conclusions are the same.
+- **Sample definition**: Tables 2–6 of the thesis use respondents with a non-missing China item (N = 4,318), as confirmed by the replication in Section 4.1. The archived script `re_ana.R` also contains exploratory analyses carried out after the thesis was completed, with a stricter sample filter (N = 3,973); the replication in Section 4.1 is authoritative. The corrected analysis uses 4,318 as the main sample and 3,973 as a robustness check; conclusions are the same.
 - **Question wording**: in 2023 the item asks about the trustworthiness of "China"; earlier waves ask about "the Chinese government". Conclusions are unchanged when 2023 is excluded.
 - **Municipal coordinates**: the spatial-exposure analysis uses municipal seat coordinates from kelvins/municipios-brasileiros (IBGE-sourced, MIT licence).
 
@@ -163,6 +163,7 @@ All in the replication repository https://github.com/Liang-Psych/lapop-brazil-re
 | `lapop_12.R` … `lapop_23.R`, `re_ana.R` | Original thesis version, unchanged |
 | `re_ana_corrected.R`, `pixi.toml` | Corrected analysis in R; run with `pixi run corrected` |
 | `re_ana_corrected_py.py` | The same corrected analysis in Python (pyfixest) |
+| `rerun_supp_sampleB.py` | Supplementary table in Section 4.1 (year and city fixed effects, interaction tests) |
 | `ANALYSIS_PLAN.md` | Pre-specified plan for the extended analyses, deviation log, results summary |
 | `build_plan_data.py`, `run_plan_v1.py` | Data construction and estimation for the extended analyses |
 | `replicate_thesis_tables.py` | Replication of thesis Tables 2–6 and their corrected-direction versions |
@@ -289,26 +290,26 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 - 论文表格中的“sample size”实为残差自由度（N 减去参数个数），例如表 2 模型 2 为 4,200 − 10 = 4,190。换算后与复现样本完全一致。
 - 复现脚本：`replicate_thesis_tables.py`，结果见 `results/thesis_tables_replication.csv`。
 
-修正方向后，混合 OLS 全部呈负相关，但这些模型都没有控制调查年份。下表补充年份固定效应和城市聚类标准误（样本为对华、对美两题均作答者；以 4,318 人为样本时结论相同，例如年份固定效应模型系数为 +0.006，p = 0.54）：
+修正方向后，混合 OLS 全部呈负相关，但这些模型都没有控制调查年份。下表补充年份固定效应和城市聚类标准误，样本与论文相同（对华题非缺失）：
 
 | 模型（修正方向） | `aid_n` 系数 | 标准误 | p | N |
 |---|---|---|---|---|
-| 混合 OLS + 控制变量 | −0.038 | 0.012 | 0.001 | 3,871 |
-| + 年份固定效应，城市聚类 | +0.007 | 0.009 | 0.43 | 3,842 |
-| + 年份固定效应 + log 人均 GDP | +0.016 | 0.010 | 0.10 | 3,805 |
-| + 年份与城市固定效应 | −0.034 | 0.017 | 0.046 | 3,564 |
-| `if_aid`，年份固定效应 | +0.011 | 0.038 | 0.77 | 3,842 |
-| 安慰剂：对美国政府信任 | +0.007 | 0.012 | 0.55 | 3,842 |
+| 混合 OLS + 控制变量（即表 2 模型 2） | −0.040 | 0.011 | 0.0004 | 4,200 |
+| + 年份固定效应，城市聚类 | +0.006 | 0.009 | 0.54 | 4,169 |
+| + 年份固定效应 + log 人均 GDP | +0.014 | 0.010 | 0.17 | 4,131 |
+| + 年份与城市固定效应 | −0.029 | 0.016 | 0.075 | 3,862 |
+| `if_aid`，年份固定效应 | −0.001 | 0.038 | 0.97 | 4,169 |
 
 | 原异质性结论的正式交互项检验（年份固定效应，城市聚类） | 系数 | p |
 |---|---|---|
-| `aid_n` × 欠发达城市 | −0.011 | 0.78 |
-| `aid_n` × 常看新闻 | −0.012 | 0.60 |
-| `aid_n` × 农村 | −0.047 | 0.68 |
+| `aid_n` × 欠发达城市 | −0.029 | 0.49 |
+| `aid_n` × 常看新闻 | −0.007 | 0.77 |
+| `aid_n` × 农村 | −0.078 | 0.44 |
 
 说明：
-- 修正方向后，混合 OLS 呈显著**负**相关。但巴西民众的对华信任在调查期间整体下降（年度均值 2017 年为 2.63，2023 年为 1.96），而中国项目同期持续增加。加入年份固定效应后效应消失，说明混合 OLS 的结果主要反映共同的时间趋势。
-- 只有同时加入城市固定效应的模型在 5% 水平上勉强显著为负（p = 0.046），其他模型均不支持，因此不作为稳健结论。
+- 修正方向后，混合 OLS 呈显著**负**相关。但巴西民众的对华信任在调查期间整体下降（年度均值 2017 年为 2.61，2023 年为 1.95），而中国项目同期持续增加。加入年份固定效应后效应消失，说明混合 OLS 的结果主要反映共同的时间趋势。
+- 再加入城市固定效应的模型系数为负，但在 5% 水平上不显著（p = 0.075），其他模型也都不支持任何方向的关系。
+- 结果文件：`results/corrected_supp_sampleB.csv`（脚本 `rerun_supp_sampleB.py`）。
 
 ### 4.2 预先确定的扩展分析
 
@@ -322,7 +323,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | 已完工 vs 已承诺未完工项目所在地 | 0.064 | [−0.026, 0.153] | 0.67 |
 | 事件研究（Sun & Abraham），事后平均效应 | 0.122 | [−0.036, 0.281] | 0.66 |
 
-- 五项均不显著。改用两题均作答的样本、剔除 2023 年、改用 25 或 100 公里范围，结论均不变。
+- 五项均不显著。改用更严格的样本口径（3,973 人）、剔除 2023 年、改用 25 或 100 公里范围，结论均不变。
 - 事件研究的事前趋势联合检验显著（F(2, 492) = 3.41，p = 0.034）。由于模型包含城市固定效应，该检验比较的是同一城市内部的变化，而不是城市之间的水平差异：与没有项目的城市相比，后来获得项目的城市在完工前 5 年以上的对华信任，相对完工前 1 年偏高。平行趋势假设因此不成立，事件研究结果不作因果解读。作为基准的完工前 1 年只有 16 个城市的 55 名受访者，这一检验本身也不够精确。它不能说明项目是否被选在原本对华态度较好的地方。
 - 执行中与计划的 7 处偏离及其理由，见 `ANALYSIS_PLAN.md` 第 8 节。
 
@@ -336,7 +337,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 
 ## 6. 其他需要说明的问题
 
-- **样本口径**：论文表 2 至表 6 使用的是“对华题非缺失”的样本（4,318 人），4.1 节的复现已经确认。仓库中归档的 `re_ana.R` 另外要求对美题也非缺失（3,973 人），与论文实际使用的样本不同，应以 4.1 节的复现为准。修正分析以 4,318 为主样本，以 3,973 为稳健性检验，两者结论一致。
+- **样本口径**：论文表 2 至表 6 使用的是“对华题非缺失”的样本（4,318 人），4.1 节的复现已经确认。仓库中归档的 `re_ana.R` 还包含论文完成后所做的探索性分析，样本筛选更严格（3,973 人），应以 4.1 节的复现为准。修正分析以 4,318 为主样本，以 3,973 为稳健性检验，两者结论一致。
 - **题目措辞**：2023 年题目为“中国的可信度”，此前各轮为“中国政府的可信度”。剔除 2023 年后结论不变。
 - **市镇坐标**：空间暴露分析使用的市镇驻地坐标来自 kelvins/municipios-brasileiros（IBGE 来源，MIT 许可）。
 
@@ -349,6 +350,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | `lapop_12.R` … `lapop_23.R`、`re_ana.R` | 原论文版本，未作改动 |
 | `re_ana_corrected.R`、`pixi.toml` | 修正版分析（R），`pixi run corrected` |
 | `re_ana_corrected_py.py` | 同一修正分析的 Python（pyfixest）版本 |
+| `rerun_supp_sampleB.py` | 4.1 节补充表（年份与城市固定效应、交互项检验） |
 | `ANALYSIS_PLAN.md` | 预先确定的扩展分析计划、偏离记录、结果摘要 |
 | `build_plan_data.py`、`run_plan_v1.py` | 扩展分析的数据构建与估计脚本 |
 | `replicate_thesis_tables.py` | 复现论文表 2 至表 6 并给出修正方向后的结果 |
