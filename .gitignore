@@ -47,3 +47,13 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# LAPOP AmericasBarometer data may not be redistributed (see README)
+*.dta
+*.sav
+bra_lapop_*.txt
+lapop_data.csv
+city_info.csv
+bra_city.csv
+bra_city_geo.gpkg
+results/plan_v1_data.csv

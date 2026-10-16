@@ -22,7 +22,7 @@
 - **原始量表**：2012、2014、2017、2019、2021、2023 六轮均为：1 = 非常可信，2 = 有些可信，3 = 不太可信，4 = 完全不可信。
 - **错误**：分析脚本 `lapop_12.R` 至 `lapop_23.R` 直接使用原始取值（`china_attitude = mil10a`），因此**数值越大表示越不信任**；但论文将其解读为数值越大态度越积极。对照变量 `mil10e`（美国政府的可信度）存在同样的问题。
 - **范围**：六轮全部受影响，方向一致。“不知道”和“拒答”已正确设为缺失值，没有混入 1 到 4 分。
-- **性质**：这是变量方向解读上的技术错误，不涉及数据篡改或选择性报告。原始数据、代码和结果记录均完整保留在本仓库中。
+- **性质**：这是变量方向解读上的技术错误，不涉及数据篡改或选择性报告。原始代码、结果与版本记录均保留在本仓库中；LAPOP 原始调查数据按其许可条款不随仓库分发，可从 LAPOP 官网下载（见 README）。
 - **论文数字可完整复现**：用原始编码重跑论文表 2 至表 6 的全部模型，每个系数和 p 值都与论文一致（见 4.1 节），证明论文结果正是来自这一未反转的变量。
 - **同类问题**：控制变量 `m1`（总统执政评价，论文中记为 `presidential_approval_rating`）在原始数据中同样为 1 = 很好 … 5 = 很差，数值越大评价越差，而论文按“支持率”解读。它不影响中国项目系数的估计，但论文对该控制变量的解读同样有误。
 
@@ -156,7 +156,7 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 
 ### 7. 复现文件
 
-均位于本仓库 `correction` 分支：
+均位于本仓库（LAPOP 原始数据需另行下载，见 README）：
 
 | 文件 | 内容 |
 |---|---|
@@ -192,7 +192,7 @@ The dependent variable in the original thesis, attitudes toward China, was inter
 - **Original scale**: in all six waves (2012, 2014, 2017, 2019, 2021, 2023): 1 = very trustworthy, 2 = somewhat trustworthy, 3 = not very trustworthy, 4 = not at all trustworthy.
 - **Error**: the scripts `lapop_12.R` to `lapop_23.R` used the raw values (`china_attitude = mil10a`), so **higher values meant less trust**, while the thesis interpreted higher values as more favourable attitudes. The comparison variable `mil10e` (trustworthiness of the US government) had the same issue.
 - **Scope**: all six waves are affected, in the same direction. "Don't know" and "No response" were correctly treated as missing and did not enter the 1–4 scale.
-- **Nature**: a technical error in interpreting the variable's direction. It involves no data manipulation or selective reporting. The original data, code and outputs are preserved in full in this repository.
+- **Nature**: a technical error in interpreting the variable's direction. It involves no data manipulation or selective reporting. The original code, outputs and version history are preserved in this repository; under LAPOP's licence terms the survey data are not redistributed here and can be downloaded from LAPOP (see README).
 - **The thesis numbers replicate exactly**: re-running every model in Tables 2–6 with the raw coding reproduces each coefficient and p-value reported in the thesis (see Section 4.1), confirming that the thesis results come from this unreversed variable.
 - **A related issue**: the control variable `m1` (evaluation of the president's performance, labelled `presidential_approval_rating` in the thesis) is also coded 1 = very good … 5 = very bad in the raw data, so higher values mean a worse evaluation, whereas the thesis interprets it as approval. This does not affect the estimates for Chinese projects, but the thesis's interpretation of this control is also incorrect.
 
@@ -328,7 +328,7 @@ To avoid specification searching after the corrected results were known, the aut
 
 ### 7. Replication files
 
-All on the `correction` branch of this repository:
+All in this repository (LAPOP survey data must be downloaded separately; see README):
 
 | File | Content |
 |---|---|
