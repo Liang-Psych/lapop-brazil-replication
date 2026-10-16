@@ -174,9 +174,9 @@ All in the replication repository https://github.com/Liang-Psych/lapop-brazil-re
 | Date | Event |
 |---|---|
 | 2025-05-22 | Degree obtained (date on the USP diploma) |
-| 2026-07-26 | Dependent-variable coding issue identified during review; public access to the original repository restricted |
+| 2026-07-26 | Dependent-variable coding issue and its cause identified during review (the official online tool and the raw data use opposite scoring directions); public access to the original repository restricted |
 | 2026-10-12 | Direct correction completed; pre-specified plan committed and run; this erratum drafted |
-| 2026-10-16 | Cause identified: the official online tool and the raw data use opposite scoring directions; Tables 2–6 fully replicated; affected sections listed against the full thesis text; erratum finalised |
+| 2026-10-16 | Tables 2–6 fully replicated; affected sections listed against the full thesis text; erratum finalised |
 
 ## 9. Use of AI tools
 
@@ -360,9 +360,9 @@ LAPOP 官方的在线数据可视化工具（[AmericasBarometer Tableau 仪表�
 | 日期 | 事项 |
 |---|---|
 | 2025-05-22 | 获得硕士学位（USP 学位证书所载日期） |
-| 2026-07-26 | 复核中发现因变量编码方向问题；原仓库暂停公开访问 |
+| 2026-07-26 | 复核中发现因变量编码方向问题及其成因（官方在线工具与原始数据计分方向相反）；原仓库暂停公开访问 |
 | 2026-10-12 | 完成直接修正分析；提交预先确定的分析计划并运行；完成本勘误草稿 |
-| 2026-10-16 | 查明错误成因：官方在线工具与原始数据计分方向相反；完整复现论文表 2 至表 6；对照论文全文列出受影响的章节；本勘误定稿 |
+| 2026-10-16 | 完整复现论文表 2 至表 6；对照论文全文列出受影响的章节；本勘误定稿 |
 
 ## 9. AI 工具使用声明
 
