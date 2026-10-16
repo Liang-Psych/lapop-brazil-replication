@@ -18,7 +18,7 @@ The dependent variable in the original thesis, attitudes toward China, was inter
 
 - **Variable**: AmericasBarometer (LAPOP) item `mil10a`, trustworthiness of the Chinese government.
 - **Original scale**: in all six waves (2012, 2014, 2017, 2019, 2021, 2023): 1 = very trustworthy, 2 = somewhat trustworthy, 3 = not very trustworthy, 4 = not at all trustworthy.
-- **Error**: the scripts `lapop_12.R` to `lapop_23.R` used the raw values (`china_attitude = mil10a`), so **higher values meant less trust**, while the thesis interpreted higher values as more favourable attitudes. The comparison variable `mil10e` (trustworthiness of the US government) had the same issue.
+- **Error**: the scripts `lapop_12.R` to `lapop_23.R` used the raw values (`china_attitude = mil10a`), so **higher values meant less trust**, while the thesis interpreted higher values as more favourable attitudes.
 - **Scope**: all six waves are affected, in the same direction. "Don't know" and "No response" were correctly treated as missing and did not enter the 1–4 scale.
 - **Nature**: a technical error in interpreting the variable's direction. It involves no data manipulation or selective reporting. The original code, outputs and version history are preserved in the replication repository (https://github.com/Liang-Psych/lapop-brazil-replication); under LAPOP's licence terms the survey data are not redistributed here and can be downloaded from LAPOP (see README).
 - **The thesis numbers replicate exactly**: re-running every model in Tables 2–6 with the raw coding reproduces each coefficient and p-value reported in the thesis (see Section 4.1), confirming that the thesis results come from this unreversed variable.
@@ -204,7 +204,7 @@ In preparing this erratum, the author used an AI assistant (Claude, developed by
 
 - **涉及变量**：美洲晴雨表（LAPOP AmericasBarometer）题目 `mil10a`，即中国政府的可信度。
 - **原始量表**：2012、2014、2017、2019、2021、2023 六轮均为：1 = 非常可信，2 = 有些可信，3 = 不太可信，4 = 完全不可信。
-- **错误**：分析脚本 `lapop_12.R` 至 `lapop_23.R` 直接使用原始取值（`china_attitude = mil10a`），因此**数值越大表示越不信任**；但论文将其解读为数值越大态度越积极。对照变量 `mil10e`（美国政府的可信度）存在同样的问题。
+- **错误**：分析脚本 `lapop_12.R` 至 `lapop_23.R` 直接使用原始取值（`china_attitude = mil10a`），因此**数值越大表示越不信任**；但论文将其解读为数值越大态度越积极。
 - **范围**：六轮全部受影响，方向一致。“不知道”和“拒答”已正确设为缺失值，没有混入 1 到 4 分。
 - **性质**：这是变量方向解读上的技术错误，不涉及数据篡改或选择性报告。原始代码、结果与版本记录均保留在复现仓库（https://github.com/Liang-Psych/lapop-brazil-replication）中；LAPOP 原始调查数据按其许可条款不随仓库分发，可从 LAPOP 官网下载（见 README）。
 - **论文数字可完整复现**：用原始编码重跑论文表 2 至表 6 的全部模型，每个系数和 p 值都与论文一致（见 4.1 节），证明论文结果正是来自这一未反转的变量。
